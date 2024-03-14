@@ -7,7 +7,6 @@ import * as cookieParser from 'cookie-parser';
 import { Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
-  console.log('CREATING AUTH');
   const app = await NestFactory.create(AuthModule);
   const configService = app.get(ConfigService);
 

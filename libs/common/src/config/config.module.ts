@@ -10,7 +10,7 @@ import * as Joi from 'joi';
   imports: [
     NestConfigModule.forRoot({
       validationSchema: Joi.object({
-        MONGODB_URI: Joi.string().required(),
+        // MONGODB_URI: Joi.string().required(),
       }),
     }),
   ],
@@ -18,3 +18,5 @@ import * as Joi from 'joi';
   exports: [ConfigService],
 })
 export class ConfigModule {}
+
+// Disabled the validation schema as it was expecting MONGODB_URI in services which dont require MONGODB_URI
