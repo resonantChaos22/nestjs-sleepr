@@ -25,6 +25,7 @@ WORKDIR /usr/src/app
 COPY package.json ./
 COPY pnpm-lock.yaml ./
 
+RUN npm install -g pnpm
 RUN pnpm install --omit=dev
 
 COPY --from=development /usr/src/app/dist ./dist
