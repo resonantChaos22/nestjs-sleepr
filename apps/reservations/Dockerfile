@@ -3,16 +3,17 @@ FROM node:alpine As development
 WORKDIR /usr/src/app
 
 COPY package.json ./
-COPY package-lock.json ./
+COPY pnpm-lock.yaml ./
 COPY tsconfig.json ./
 COPY nest-cli.json ./
 
-RUN npm install
+RUN npm install -g pnpm
+RUN pnpm install -r
 
 COPY apps/reservations apps/reservations
 COPY libs libs
 
-RUN npm run build reservations
+RUN pnpm run build reservations
 
 FROM node:alpine As production
 
@@ -24,7 +25,7 @@ WORKDIR /usr/src/app
 COPY package.json ./
 COPY package-lock.json ./
 
-RUN npm install --omit=dev
+RUN pnpm install --omit=dev
 
 COPY --from=development /usr/src/app/dist ./dist
 

@@ -1,6 +1,7 @@
 # compiled output
 /dist
 /node_modules
+**/node_modules
 
 # Logs
 logs
@@ -18,6 +19,9 @@ lerna-debug.log*
 .env
 env-file
 .env-local
+
+#   Secrets
+secrets
 
 # Tests
 /coverage
