@@ -4,11 +4,16 @@ WORKDIR /usr/src/app
 
 COPY package.json ./
 COPY package-lock.json ./
+COPY tsconfig.json ./
+COPY nest-cli.json ./
 
 RUN npm install
 
-COPY . .
-RUN npm run build
+COPY apps/auth apps/auth
+COPY libs libs
+RUN cd apps/auth && npm install
+
+RUN npm run build auth
 
 FROM node:alpine As production
 

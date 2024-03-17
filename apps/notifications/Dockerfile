@@ -4,16 +4,16 @@ WORKDIR /usr/src/app
 
 COPY package.json ./
 COPY package-lock.json ./
-COPY tsconfig.json ./
+COPY tsconfig.json tsconfig.json
 COPY nest-cli.json ./
 
 RUN npm install
 
-COPY apps/payments apps/payments
+COPY apps/notifications apps/notifications
 COPY libs libs
-RUN cd apps/payments && npm install
+RUN cd apps/notifications && npm install
 
-RUN npm run build payments
+RUN npm run build notifications
 
 FROM node:alpine As production
 
@@ -29,4 +29,4 @@ RUN npm install --omit=dev
 
 COPY --from=development /usr/src/app/dist ./dist
 
-CMD ["node", "dist/apps/payments/main.js"]
+CMD ["node", "dist/apps/notifications/main.js"]
