@@ -28,7 +28,7 @@ COPY package.json ./
 COPY pnpm-lock.yaml ./
 
 RUN npm install -g pnpm
-RUN pnpm install --omit=dev
+RUN pnpm install --prod
 
 COPY --from=development /usr/src/app/dist ./dist
 
